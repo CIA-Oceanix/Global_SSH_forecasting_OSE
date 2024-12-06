@@ -1,4 +1,3 @@
-import copernicusmarine
 import os
 
 from src.ose_pipeline.data_utils import download_copernicus_data_for_sat, filt_daily_ssh_data, grid_input
@@ -40,15 +39,13 @@ def execute_data_pipeline(
         overwrite,
 ):
     print('-'*60+'\n'+'-'*60+'\nDATA PIPELINE START:\n')
-
-    #copernicusmarine.login()
             
     print('-'*60+'\n'+'downloading ref')
     for ref_sat in ref_satellites:
         if not data_exists(dl_sat_ref_dir.format(ref_sat), overwrite):
             download_data(
                     sat=ref_sat, 
-                    download_dir=dl_sat_ref_dir.format(ref_sat), 
+                    download_dir=dl_sat_ref_dir.format(ref_sat),
                     min_time=min_time, 
                     max_time=max_time, 
                     copernicus_dataset_id=copernicus_dataset_id

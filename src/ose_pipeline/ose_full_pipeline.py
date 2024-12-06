@@ -1,6 +1,4 @@
-from omegaconf import OmegaConf
 import datetime
-from tqdm import tqdm
 import os
 
 from src.ose_pipeline.ose_data_pipeline import execute_data_pipeline
@@ -36,7 +34,6 @@ def setup_config(
     return (
         dl_sat_ref_dir,
         concat_ref_path,
-        concat_ref_path,
         metrics_paths,
         min_time_offseted,
         max_time_offseted
@@ -69,7 +66,6 @@ def execute_full_pipeline(
 ):
     (
         dl_sat_ref_dir,
-        concat_ref_path,
         concat_ref_path,
         metrics_paths,
         min_time_offseted,

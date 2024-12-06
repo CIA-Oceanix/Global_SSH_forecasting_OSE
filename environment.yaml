@@ -1,0 +1,21 @@
+name: metric-env
+channels:
+  - conda-forge
+
+dependencies:
+  - python >= 3.10
+  - anaconda
+  - pip
+  - hydra
+  - xarray
+  - scipy
+  - pyinterp
+  - matplotlib
+  - glob2
+  - tqdm
+  - datetime
+  - pip:
+    - copernicusmarine
+    - ocn_tools @ git+https://github.com/jejjohnson/ocn-tools.git 
+
+

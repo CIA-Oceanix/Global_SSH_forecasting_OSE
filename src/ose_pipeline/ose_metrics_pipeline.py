@@ -33,18 +33,28 @@ def domain_metrics(
     lat_min = spatial_domain.lat.start
     lat_max = spatial_domain.lat.stop
 
+    is_circle = False
+    if domain_name == 'GLOBE':
+        is_circle=True
+
+    centered = False
+    if model_type == 'MERCATOR_FORECAST' or model_type == 'GLORYS12_REANALYSIS':
+        centered = True
+
     RMSE_dict = dict()
 
     for leadtime_index, leadtime_filepath in tqdm(leadtimes.items()):
         a,b = eval_ose(
             path_alongtrack = concat_ref_path,
-            rec_ds = get_preprocessed_rec(leadtime_filepath, model_type=model_type),
+            rec_ds = get_preprocessed_rec(leadtime_filepath, model_type=model_type, leadtime_index=leadtime_index, time_min=min_time_offseted, time_max=max_time_offseted),
             time_min = min_time_offseted,
             time_max = max_time_offseted,
             lon_min=lon_min,
             lon_max=lon_max,
             lat_min=lat_min,
             lat_max=lat_max,
+            is_circle=is_circle,
+            centered=centered
         )
 
         tqdm.write('leadtime {} - RMSE: {:.5f} | PSD: {:.4f}'.format(leadtime_index, a, b))

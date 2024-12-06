@@ -1,11 +1,11 @@
 # @package _global_
 
 # Folder names for data and metrics organisation
-xp_name: glorys4_4dvar
-data_name: processed_2019_global_4
+xp_name: mercator_forecast_timedelta
+data_name: REPO_nrt_2024_global_4
 
 # Your model type, for data preprocessing
-MODEL_TYPE: 4DVARNET
+MODEL_TYPE: MERCATOR_FORECAST
 
 paths:
   # Folders in which subfolders for your metrics will be created
@@ -13,12 +13,12 @@ paths:
   METRICS_PATH: /DATASET/GLORYS12/metrics/
 
   # Folder where your leadtimes to evaluate are located
-  rec_path: /DATASET/GLORYS12/rec/glorys4_global_movpatch_softedge_1y_fastrec/nrt_2019_global_4/
+  rec_path: /DATASET/GLORYS12/mercator_forecast/glo12/
 
 specs:
   # Time slice for data download and metrics computations
-  min_time: 2019-02-01
-  max_time: 2019-08-31
+  min_time: 2024-01-01
+  max_time: 2024-09-30
   time_day_crop: 0
 
   # Domain for data download
@@ -28,8 +28,8 @@ specs:
   max_lat: 90
 
   #IMPORTANT: keep "{}" in place of satellite name in copernicus_dataset_id
-  copernicus_dataset_id: cmems_obs-sl_glo_phy-ssh_my_{}-l3-duacs_PT1S
-  ref_satellites: ['c2', 'h2ag', 'h2b', 'j3', 's3a', 's3b']
+  copernicus_dataset_id: cmems_obs-sl_glo_phy-ssh_nrt_{}-l3-duacs_PT1S
+  ref_satellites: ['al', 'c2n', 'h2b', 'j3n', 's3a', 's3b']
 
 # Domains for metrics computation
 metrics_spatial_domains:

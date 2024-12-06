@@ -1,15 +1,14 @@
-import pytorch_lightning
-from omegaconf import OmegaConf
-import hydra
 import xarray as xr
 import numpy as np
 import pyinterp
 import os
-import logging
 import netCDF4
 import scipy.signal
 from scipy import interpolate
 import matplotlib.pylab as plt
+from datetime import timedelta
+from tqdm import tqdm
+import torch
 
 class EmptyDomainException(Exception):
     def __init__(self, *args):
@@ -42,14 +41,15 @@ def read_l3_dataset(file,
     if 'latitude' in list(ds.variables):
         ds = ds.rename({'latitude':'lat', 'longitude':'lon'})
 
+    if centered:
+        ds = ds - ds.mean(skipna=True)
+
     ds = ds.sel(time=slice(time_min, time_max), drop=True)
     ds = ds.where((ds["lat"] >= lat_min) & (ds["lat"] <= lat_max),
                   drop=True)
     ds = ds.where((ds["lon"] >= lon_min) &
                   (ds["lon"] <= lon_max),
                   drop=True)
-    if centered:
-        ds = ds - ds.mean(skipna=True)
     return ds
 
 
@@ -110,6 +110,35 @@ def read_l4_dataset(ds,
 
     return x_axis, y_axis, z_axis, grid
 
+def restrict_time_alongtrack(time_alongtrack, time_rec, days_offset=0.5):
+    # Define the allowed timedelta in seconds
+    allowed_timedelta_seconds = timedelta(days=days_offset).total_seconds()
+
+    # Convert numpy.datetime64 to seconds since epoch
+    time_alongtrack_seconds = time_alongtrack.astype('int64') // 10**9
+    time_rec_seconds = time_rec.astype('int64') // 10**9
+
+    # Move data to GPU as torch tensors
+    time_alongtrack_tensor = torch.tensor(time_alongtrack_seconds, dtype=torch.float32)
+    time_rec_tensor = torch.tensor(time_rec_seconds, dtype=torch.float32)
+
+    # Expand tensors to compare all combinations
+    time_alongtrack_expanded = time_alongtrack_tensor.unsqueeze(1)  # Shape: (N, 1)
+    time_rec_expanded = time_rec_tensor.unsqueeze(0)  # Shape: (1, M)
+
+    # Compute the time differences (broadcasting for all combinations)
+    time_differences = time_rec_expanded - time_alongtrack_expanded  # Shape: (N, M)
+
+    # Apply the allowed timedelta mask
+    mask = (time_differences.abs() <= allowed_timedelta_seconds)  # Shape: (N, M)
+
+    # Reduce along the time_rec dimension to check if any match exists
+    valid_mask = mask.any(dim=1)  # Shape: (N,)
+
+    # Filter time_alongtrack using the mask
+    filtered_datetimes = time_alongtrack[valid_mask.numpy()]
+
+    return filtered_datetimes
 
 def interp_on_alongtrack(gridded_dataset,
                          ds_alongtrack,
@@ -155,12 +184,15 @@ def interp_on_alongtrack(gridded_dataset,
                                                        var_name=var_name)
     else:
         raise NameError("gridded_dataset type error")
+    
     ssh_map_interp = pyinterp.trivariate(
         grid,
         ds_alongtrack["lon"].values,
         ds_alongtrack["lat"].values,
         z_axis.safe_cast(ds_alongtrack.time.values),
-        bounds_error=False).reshape(ds_alongtrack["lon"].values.shape)
+        bounds_error=False,
+        interpolator='bilinear',
+        z_method='nearest').reshape(ds_alongtrack["lon"].values.shape)
 
     if 'ssh' not in ds_alongtrack.variables:
         ssh_alongtrack = (ds_alongtrack["sla_unfiltered"] + ds_alongtrack["mdt"] -
@@ -171,7 +203,6 @@ def interp_on_alongtrack(gridded_dataset,
     lon_alongtrack = ds_alongtrack["lon"].values
     lat_alongtrack = ds_alongtrack["lat"].values
     time_alongtrack = ds_alongtrack["time"].values
-
 
     # get and apply mask from map_interp & alongtrack on each dataset
     msk1 = np.ma.masked_invalid(ssh_alongtrack).mask
@@ -384,8 +415,6 @@ def compute_stats(time_alongtrack, lat_alongtrack, lon_alongtrack,
 
     ncfile.close()
 
-    #logging.info(f'  Results saved in: {output_filename}')
-
     # write time series statistics
     leaderboard_nrmse, leaderboard_nrmse_std = write_timeserie_stat(
         ssh_alongtrack, ssh_map_interp, time_alongtrack, bin_time_step,
@@ -596,7 +625,8 @@ def eval_ose(path_alongtrack,
              lat_min = 33.,
              lat_max = 43.,
              centered=False,
-             plot_scores=False):
+             plot_scores=False,
+             is_circle = False):
     """
     Compute the metrics for a given dataset based on L3 alongtrack observation data.
     Input:
@@ -606,6 +636,8 @@ def eval_ose(path_alongtrack,
         time_min (pandas.datetime) -- minimum time on which metrics are computed.
         time_max (pandas.datetime) -- maximum time on which metrics are computed.
         centered (bool) -- if True, center the data around 0.
+        plot_scores (bool)
+        is_circle (bool)
     Return:
         leaderboard_nrmse (float) -- Average normalized root mean square error score.
         learderboard_psds_score (int) -- Minimum spatial scale resolved.
@@ -622,7 +654,6 @@ def eval_ose(path_alongtrack,
     #lon_max = -55.
     #lat_min = 33.
     #lat_max = 43.
-    is_circle = False
 
     # Outputs
     bin_lat_step = 1.
@@ -646,6 +677,9 @@ def eval_ose(path_alongtrack,
     ds_alongtrack = read_l3_dataset(path_alongtrack, lon_min, lon_max, lat_min,
                                     lat_max, time_min, time_max, centered)
     
+    tqdm.write('ds_alontrack before filtering: {}'.format(ds_alongtrack.sizes))
+    ds_alongtrack = ds_alongtrack.sel(time=restrict_time_alongtrack(ds_alongtrack.time.values, rec_ds.time.values))
+    tqdm.write('ds_alontrack after filtering: {}'.format(ds_alongtrack.sizes))
 
     # Read reconstructed datasets and interpolate onto alongtrack positions
     time_alongtrack, lat_alongtrack, lon_alongtrack, ssh_alongtrack, ssh_map_interp = interp_on_alongtrack(
@@ -670,7 +704,6 @@ def eval_ose(path_alongtrack,
         # Compute spectral scores
         compute_spectral_scores(time_alongtrack, lat_alongtrack, lon_alongtrack, ssh_alongtrack,
                                 ssh_map_interp, lenght_scale, delta_x, delta_t, "spectrum.nc")
-        learderboard_psds_score = -999
         learderboard_psds_score = plot_psd_score("spectrum.nc", plot=plot_scores)
     except OverflowError:
         learderboard_psds_score = np.nan

@@ -1,7 +1,7 @@
 # @package _global_
 
 # Folder names for data and metrics organisation
-xp_name: glorys4_4dvar
+xp_name: glorys4_4dvar_test
 data_name: processed_2019_global_4
 
 # Your model type, for data preprocessing
@@ -17,8 +17,8 @@ paths:
 
 specs:
   # Time slice for data download and metrics computations
-  min_time: 2019-02-01
-  max_time: 2019-08-31
+  min_time: 2019-03-01
+  max_time: 2019-04-30
   time_day_crop: 0
 
   # Domain for data download
@@ -33,17 +33,17 @@ specs:
 
 # Domains for metrics computation
 metrics_spatial_domains:
-  GLOBE:
-    lat:
-      _target_: builtins.slice
-      _args_:
-      - -80
-      - 90
-    lon:
-      _target_: builtins.slice
-      _args_:
-      - -180
-      - 180
+  #GLOBE:
+  #  lat:
+  #    _target_: builtins.slice
+  #    _args_:
+  #    - -80
+  #    - 90
+  #  lon:
+  #    _target_: builtins.slice
+  #    _args_:
+  #    - -180
+  #    - 180
   GULFSTREAM:
     lat:
       _target_: builtins.slice

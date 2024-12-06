@@ -1,11 +1,11 @@
 # @package _global_
 
 # Folder names for data and metrics organisation
-xp_name: glorys4_4dvar
-data_name: processed_2019_global_4
+xp_name: mercator_forecast_timedelta
+data_name: REPO_processed_2023_global_4
 
 # Your model type, for data preprocessing
-MODEL_TYPE: 4DVARNET
+MODEL_TYPE: MERCATOR_FORECAST
 
 paths:
   # Folders in which subfolders for your metrics will be created
@@ -13,12 +13,12 @@ paths:
   METRICS_PATH: /DATASET/GLORYS12/metrics/
 
   # Folder where your leadtimes to evaluate are located
-  rec_path: /DATASET/GLORYS12/rec/glorys4_global_movpatch_softedge_1y_fastrec/nrt_2019_global_4/
+  rec_path: /DATASET/GLORYS12/mercator_forecast/glo12/
 
 specs:
   # Time slice for data download and metrics computations
-  min_time: 2019-02-01
-  max_time: 2019-08-31
+  min_time: 2023-01-01
+  max_time: 2023-06-30
   time_day_crop: 0
 
   # Domain for data download
