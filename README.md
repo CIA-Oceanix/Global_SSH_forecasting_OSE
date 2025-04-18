@@ -8,7 +8,7 @@ The goal of this repository is to have a central codebase in which agreed upon m
 | GLO12 SSH                 | 0.818       | 0.816        | 0.814        |
 | GLO12 SLA                 | 0.912       | 0.906        | 0.902        |
 | **DUACS**                 | **0.939**   | **0.939**    | **0.939**    |
-| 4DVarNet SLA latent dim 0 | _0.936_     | _0.931_      | _0.924_      |
+| **4DVarNet SLA latent dim 0** | **_0.936_**     | **_0.931_**      | **_0.924_**      |
 | U-Net                     | 0.932       | 0.927        | _0.924_      |
 | U-Net more complex        | 0.931       | 0.924        | 0.920        |
 | XiHE SSH                  | 0.818       | 0.780        | 0.779        |
