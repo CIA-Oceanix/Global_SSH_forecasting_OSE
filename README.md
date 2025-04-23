@@ -14,7 +14,7 @@ The goal of this repository is to have a central codebase in which agreed upon m
 | XiHE SSH                  | 0.818       | 0.780        | 0.779        |
 | XiHE SLA                  | 0.912       | 0.843        | 0.842        |
 | GloNet SSH                | 0.821       | 0.825        | 0.823        |
-| GloNet SLA                | 0.906       | _0.913_      | _0.911_      |
+| GloNet SLA                | 0.906       | 0.913      | 0.911      |
 
 
 
@@ -29,7 +29,7 @@ The goal of this repository is to have a central codebase in which agreed upon m
 | XiHE SSH                  | 0.818       | 0.780        | 0.779        |
 | XiHE SLA                  | 0.912       | 0.843        | 0.842        |
 | GloNet SSH                | 74.96       | 74.98       | 74.60        |
-| GloNet SLA                | 0.906       | _0.913_      | _0.911_      |
+| GloNet SLA                | 72.46       | 71.76     | 71.94      |
 
 
 ## INSTALL REPO
