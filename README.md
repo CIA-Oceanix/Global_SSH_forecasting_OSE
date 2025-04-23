@@ -29,7 +29,7 @@ The goal of this repository is to have a central codebase in which agreed upon m
 | XiHE SSH                  | 60.66       | 64.67        | 63.95        |
 | XiHE SLA                  | 68.57       | 64.09        | 64.09        |
 | GloNet SSH                | 74.96       | 74.98       | 74.60        |
-| GloNet SLA                | 72.46       | 71.76     | 71.94      |
+| GloNet SLA                | 75.82       | 75.91     | 75.30      |
 
 
 ## INSTALL REPO
