@@ -3,7 +3,7 @@ The goal of this repository is to have a central codebase in which agreed upon m
 
 ## Current Leaderboard
 
-| Model                      | SSH (0 day) | SSH (3 days) | SSH (5 days) |
+| Model                      | &mu (0 day) | SSH (3 days) | SSH (5 days) |
 |---------------------------|-------------|--------------|--------------|
 | GLO12 SSH                 | 0.818       | 0.816        | 0.814        |
 | GLO12 SLA                 | 0.912       | 0.906        | 0.902        |
