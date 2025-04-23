@@ -9,7 +9,7 @@ The goal of this repository is to have a central codebase in which agreed upon m
 | GLO12 SLA                 | 0.912       | 0.906        | 0.902        |
 | **DUACS**                 | **0.939**   | **0.939**    | **0.939**    |
 | **4DVarNet** | **_0.936_**     | **_0.931_**      | **_0.924_**      |
-| U-Net-17M                     | 0.932       | 0.927        | _0.924_      |
+| U-Net-17M                     | 0.932       | 0.927        | 0.924      |
 | U-Net-70M        | 0.931       | 0.924        | 0.920        |
 | XiHE SSH                  | 0.818       | 0.780        | 0.779        |
 | XiHE SLA                  | 0.912       | 0.843        | 0.842        |
@@ -24,9 +24,9 @@ The goal of this repository is to have a central codebase in which agreed upon m
 | GLO12 SLA                 | 68.57       | 68.22       | 68.06       |
 | **DUACS**                 | **0.939**   | **0.939**    | **0.939**    |
 | **4DVarNet** | **_0.936_**     | **_0.931_**      | **_0.924_**      |
-| U-Net-17M                     | 0.932       | 0.927        | _0.924_      |
+| U-Net-17M                     | 67.99       | 64.19       | 61.34      |
 | U-Net-70M        | 0.931       | 0.924        | 0.920        |
-| XiHE SSH                  | 60.66       | 67.84        | 67.46        |
+| XiHE SSH                  | 60.66       | 64.67        | 63.95        |
 | XiHE SLA                  | 68.57       | 64.09        | 64.09        |
 | GloNet SSH                | 74.96       | 74.98       | 74.60        |
 | GloNet SLA                | 72.46       | 71.76     | 71.94      |
