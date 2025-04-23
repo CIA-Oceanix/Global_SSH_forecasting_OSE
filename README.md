@@ -27,7 +27,7 @@ The goal of this repository is to have a central codebase in which agreed upon m
 | U-Net-17M                     | 72.86       | 70.08       | 67.89      |
 | U-Net-70M        | 71.85       | 69.45        | 67.43        |
 | XiHE SSH                  | 60.66       | 64.67        | 63.95        |
-| XiHE SLA                  | 68.57       | 64.09        | 64.09        |
+| XiHE SLA                  | 72.72       | 64.09        | 64.09        |
 | GloNet SSH                | 74.96       | 74.98       | 74.60        |
 | **GloNet SLA**                | **_75.82_**       | **_75.91_**     | **_75.30_**      |
 
