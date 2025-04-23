@@ -21,7 +21,7 @@ The goal of this repository is to have a central codebase in which agreed upon m
 | Model                      | % correct velocity magnitudes (0 day) | % correct velocity magnitudes (3 days) | % correct velocity magnitudes (5 days) |
 |---------------------------|-------------|--------------|--------------|
 | GLO12 SSH                 | 60.66       | 57.29        | 55.25        |
-| GLO12 SLA                 | 72.72       | 68.22       | 68.06       |
+| GLO12 SLA                 | 72.72       | 72.09       | 68.06       |
 | **DUACS**                 | **0.939**   | **0.939**    | **0.939**    |
 | 4DVarNet | _72.96_     | _72.53_      | _69.63_      |
 | U-Net-17M                     | 72.86       | 70.08       | 67.89      |
