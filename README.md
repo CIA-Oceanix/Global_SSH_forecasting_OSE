@@ -21,14 +21,14 @@ The goal of this repository is to have a central codebase in which agreed upon m
 | Model                      | % velocity (0 day) | % velocity (3 days) | % velocity (5 days) |
 |---------------------------|-------------|--------------|--------------|
 | GLO12 SSH                 | 60.66       | 57.29        | 55.25        |
-| GLO12 SLA                 | 0.912       | 0.906        | 0.902        |
+| GLO12 SLA                 | 68.57       | 68.22       | 68.06       |
 | **DUACS**                 | **0.939**   | **0.939**    | **0.939**    |
 | **4DVarNet** | **_0.936_**     | **_0.931_**      | **_0.924_**      |
 | U-Net-17M                     | 0.932       | 0.927        | _0.924_      |
 | U-Net-70M        | 0.931       | 0.924        | 0.920        |
 | XiHE SSH                  | 0.818       | 0.780        | 0.779        |
 | XiHE SLA                  | 0.912       | 0.843        | 0.842        |
-| GloNet SSH                | 0.821       | 0.825        | 0.823        |
+| GloNet SSH                | 74.96       | 74.98       | 74.60        |
 | GloNet SLA                | 0.906       | _0.913_      | _0.911_      |
 
 
