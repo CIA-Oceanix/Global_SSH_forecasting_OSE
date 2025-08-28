@@ -17,7 +17,7 @@ The goal of this repository is to have a central codebase in which agreed upon m
 | **GloNet SLA**  | _0.906_  | _0.913_  | _0.911_  | _**75.82**_        | _**75.91**_        | _**75.30**_        |
 
 Latest benchmark : 
-
+![alt text](https://github.com/[username]/[reponame]/blob/[branch]/image.jpg?raw=true)
 
 
 ## INSTALL REPO
