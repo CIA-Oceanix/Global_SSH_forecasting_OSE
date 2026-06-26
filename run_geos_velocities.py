@@ -1,7 +1,10 @@
 import os
+import sys
 import numpy as np
 import pandas as pd
 import xarray as xr
+
+sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 
 from src.mod_stat import *
 from src.mod_velocities_geos import *
