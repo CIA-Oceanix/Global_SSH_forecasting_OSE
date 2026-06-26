@@ -128,12 +128,14 @@ def main():
         ds_maps_leadtime_i = ds_maps_leadtime_i.sortby(['time', 'longitude', 'latitude'])
 
         ds_maps_leadtime_i = retreive_geos_velocities(ds_maps_leadtime_i, "sla", "4dvar")
+        encoding = {var: {'dtype': 'float32'} for var in ds_maps_leadtime_i.data_vars}
         ds_maps_leadtime_i.to_netcdf(
             '/Odyssey/public/glorys/rec/evaluation/'
             + method_name
-            + 'all_days_GEOS_velocities_leadtime_'
+            + '_all_days_GEOS_velocities_leadtime_'
             + str(leadtime)
-            + '.nc'
+            + '.nc',
+            encoding=encoding,
         )
         print(f'============== Leadtime {leadtime} saved ==============')
 
