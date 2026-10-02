@@ -1,6 +1,8 @@
 # Short Term Global Ocean Forecast evaluation
 The goal of this repository is to have a central codebase in which agreed upon metrics are applied to different global ocean forecast models, in order to have a fair comparison.
 
+The benchmark evaluation was built upon the OceanBench SSH edition (Johnson et al., 2025): https://github.com/jejjohnson/oceanbench; and can directly be linked to OceanBench forecasting benchmark platform (el Aouni et al., 2025b): https://oceanbench.lab.dive.edito.eu/
+
 ### Current leaderboard : 
 ![alt text](https://github.com/CIA-Oceanix/Global_SSH_forecasting_OSE/blob/main/final_results_SLA.png?raw=true)
 
