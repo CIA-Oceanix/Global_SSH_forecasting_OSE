@@ -13,12 +13,12 @@ The benchmark evaluation was built upon the OceanBench SSH edition (Johnson et a
 | Model | Configuration | μ-score LT0 | μ-score LT3 | μ-score LT5 | % Angles LT0 | % Angles LT3 | % Angles LT5 |
 |-------|--------------|:-----------:|:-----------:|:-----------:|:------------:|:------------:|:------------:|
 | 4DVarNet | Nadir only | 0.936 | 0.934 | 0.929 | 66.1 | 64.9 | 62.0 |
-| **4DVarNet** | **Nadir + SWOT** ✅ | **0.937** | **0.936** | **0.931** | **67.0** | **67.0** | **64.1** |
+| **4DVarNet** | **Nadir + SWOT** | **0.937** | **0.936** | **0.931** | **67.0** | **67.0** | **64.1** |
 | UNet-17M | Nadir only | 0.936 | 0.930 | 0.925 | 67.2 | 65.8 | 63.5 |
 | UNet-17M | Nadir + SWOT | 0.936 | 0.930 | 0.924 | 67.1 | 65.7 | 63.4 |
 | WenHai | Gap-free L4 | — | — | — | — | — | — |
 
-> SWOT consistently improves 4DVarNet (+0.001 nRMSE, +1–2% SSC angles). UNet shows marginal or no gain — the variational structure of 4DVarNet is better suited to exploiting additional spatial coverage.
+> SWOT consistently improves 4DVarNet (+0.001 nRMSE, +1–2% SSC angles). UNet shows marginal or no gain, the variational structure of 4DVarNet is better suited to exploiting additional spatial coverage.
 
 
 
