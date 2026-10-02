@@ -18,7 +18,7 @@ The goal of this repository is to have a central codebase in which agreed upon m
 
 
 ### Latest benchmark : 
-![alt text](https://github.com/CIA-Oceanix/Global_SSH_forecasting_OSE/blob/main/benchmark_complete.png?raw=true)
+![alt text](https://github.com/CIA-Oceanix/Global_SSH_forecasting_OSE/blob/main/final_benchmark_SLA.png?raw=true)
 
 
 ## INSTALL REPO
