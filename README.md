@@ -3,8 +3,23 @@ The goal of this repository is to have a central codebase in which agreed upon m
 
 The benchmark evaluation was built upon the OceanBench SSH edition (Johnson et al., 2025): https://github.com/jejjohnson/oceanbench; and can directly be linked to OceanBench forecasting benchmark platform (el Aouni et al., 2025b): https://oceanbench.lab.dive.edito.eu/
 
-### Current leaderboard : 
+### Current leaderboard (2023 evaluation year) : 
 ![alt text](https://github.com/CIA-Oceanix/Global_SSH_forecasting_OSE/blob/main/final_results_SLA.png?raw=true)
+
+---
+
+### SWOT Integration — 2024 Evaluation
+
+| Model | Configuration | μ-score LT0 | μ-score LT3 | μ-score LT5 | % Angles LT0 | % Angles LT3 | % Angles LT5 |
+|-------|--------------|:-----------:|:-----------:|:-----------:|:------------:|:------------:|:------------:|
+| 4DVarNet | Nadir only | 0.936 | 0.934 | 0.929 | 66.1 | 64.9 | 62.0 |
+| **4DVarNet** | **Nadir + SWOT** ✅ | **0.937** | **0.936** | **0.931** | **67.0** | **67.0** | **64.1** |
+| UNet-17M | Nadir only | 0.936 | 0.930 | 0.925 | 67.2 | 65.8 | 63.5 |
+| UNet-17M | Nadir + SWOT | 0.936 | 0.930 | 0.924 | 67.1 | 65.7 | 63.4 |
+| WenHai | Gap-free L4 | — | — | — | — | — | — |
+
+> SWOT consistently improves 4DVarNet (+0.001 nRMSE, +1–2% SSC angles). UNet shows marginal or no gain — the variational structure of 4DVarNet is better suited to exploiting additional spatial coverage.
+
 
 
 ## INSTALL REPO
